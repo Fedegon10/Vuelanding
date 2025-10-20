@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Probador de Archivos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        input[type="file"] {
+            margin-bottom: 1rem;
+        }
+        #fileLink {
+            display: none; /* Oculto hasta que haya una URL */
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background-color: #16a34a; /* Color verde para descargar */
+            color: white;
+            border-radius: 0.25rem;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-2xl font-bold mb-4">Prueba de Carga y Descarga</h1>
+        <p class="mb-4 text-gray-600">Selecciona un archivo para generar un enlace de descarga.</p>
+        
+        <input type="file" id="fileInput">
+        
+        <p id="status" class="text-gray-500">Esperando archivo...</p>
+        
+        <!-- El texto del enlace ahora dice "Descargar" -->
+        <a href="#" id="fileLink" target="_blank">Descargar archivo generado</a>
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const fileLink = document.getElementById('fileLink');
+        const status = document.getElementById('status');
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+
+            if (!file) {
+                status.textContent = 'No se seleccionó ningún archivo.';
+                return;
+            }
+
+            status.textContent = 'Leyendo archivo...';
+            
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                console.log("Archivo leído y listo para descargar.");
+
+                // Asignamos la URL de datos (Base64) al enlace
+                fileLink.href = reader.result;
+                
+                // --- ¡ESTA ES LA LÍNEA CLAVE DE LA SOLUCIÓN! ---
+                // El atributo "download" le dice al navegador que descargue el archivo
+                // en lugar de navegar a la URL. Le damos el nombre original.
+                fileLink.download = file.name;
+
+                fileLink.style.display = 'inline-block';
+                status.textContent = '¡Listo! Haz clic en el enlace para descargar.';
+            };
+
+            reader.onerror = (error) => {
+                console.error("Error al leer el archivo:", error);
+                status.textContent = 'Error al leer el archivo. Revisa la consola.';
+            };
+
+            reader.readAsDataURL(file);
+        });
+    </script>
+</body>
+</html>
+

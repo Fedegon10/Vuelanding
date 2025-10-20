@@ -1,0 +1,172 @@
+/* ====== IMPORTS (primero SIEMPRE) ====== */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@600;700&display=swap");
+@import "./_variables.css";
+@import "react-toastify/dist/ReactToastify.css";
+@import "../components/common/SwipeableListItem.css";
+
+/* ====== RESET / BASE ====== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ✅ REGLAS GLOBALES PARA PWA Y MÓVILES */
+html,
+body,
+#root {
+  width: 100%;
+  overflow: hidden;
+  height: 100vh; /* Fallback */
+  height: var(--app-height, 100vh);
+}
+
+body {
+  font-family: var(--font-family-body);
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.4;
+  overscroll-behavior-y: none;
+}
+
+#root {
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====== LAYOUT & UTILIDADES GLOBALES ====== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.container {
+  width: min(100% - 2rem, 1200px);
+  margin-inline: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-heading);
+}
+
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  background-color: var(--color-surface-hover);
+  box-shadow: var(--box-shadow-lg);
+}
+
+/* ====== BOTONES ====== */
+.btn-primary,
+.btn-secondary {
+  display: inline-block;
+  font-family: var(--font-family-body);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  appearance: none;
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+.btn-primary {
+  color: #ffffff;
+  background-color: var(--color-primary);
+  border: 1px solid transparent;
+  box-shadow: 0 0 10px rgba(123, 97, 255, 0.25);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.btn-secondary {
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+.btn-primary[disabled],
+.btn-secondary[disabled],
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* 🌗 Transiciones suaves de tema */
+* {
+  transition: background-color 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* ===============================
+   FIX DEFINITIVO — SAFE AREAS iOS
+   =============================== */
+
+/* Fondo total, incluyendo detrás del notch */
+html,
+body,
+#root {
+  height: 100%;
+  /* CORRECCIÓN: Eliminada la propiedad `min-height: -webkit-fill-available;` 
+     para evitar conflictos con la variable --app-height. */
+  background-color: var(--color-background);
+}
+
+/* Rellenar área superior (notch / status bar) */
+.safe-top-fill {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: env(safe-area-inset-top, 0px);
+  background-color: var(--color-background);
+  /* CORRECCIÓN: z-index elevado para asegurar que colorea el notch sobre cualquier fondo */
+  z-index: 999;
+  pointer-events: none;
+}
+
+/* CORRECCIÓN: Se eliminan estos paddings que eran la causa principal del problema.
+   El padding ahora se gestiona localmente en Layout.css */
+/*
+.app-container,
+.main-content {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+*/
+
+/* Rellenar área inferior (home indicator si no hay nav visible) */
+body::after {
+  content: "";
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: env(safe-area-inset-bottom, 0px);
+  background-color: var(--color-background);
+  z-index: 0;
+  pointer-events: none;
+}

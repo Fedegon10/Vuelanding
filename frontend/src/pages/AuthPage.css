@@ -1,0 +1,256 @@
+:root {
+  --color-bg: #f8f9fb;
+  --color-card: #ffffff;
+  --color-primary: #5a3fff;
+  --color-primary-hover: #4e34e1;
+  --color-border: #e5e7eb;
+  --color-text: #111827;
+  --color-text-secondary: #6b7280;
+  --color-error: #ef4444;
+  --color-success: #16a34a;
+  --radius: 16px;
+  --shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Layout General --- */
+.auth-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+  background-color: var(--color-bg);
+  overflow: hidden;
+}
+
+/* --- Lado Visual (Imagen) --- */
+.auth-image {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  transition: background-image 0.5s ease-in-out;
+}
+.auth-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1) 30%,
+    rgba(0, 0, 0, 0.6)
+  );
+}
+.auth-branding {
+  position: relative;
+  z-index: 2;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+.auth-branding h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.auth-branding p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* --- Tarjeta de Autenticación --- */
+.auth-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: var(--color-bg);
+  overflow-y: auto;
+}
+.auth-content {
+  background: var(--color-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 420px;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.auth-content h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+  font-weight: 600;
+}
+.auth-content p {
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* --- Formularios e Inputs --- */
+.input-group {
+  text-align: left;
+  margin-bottom: 1.25rem;
+}
+.input-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--color-text-secondary);
+}
+.input-group input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: #fafafa;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.input-group input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(90, 63, 255, 0.15);
+}
+
+/* --- Botones --- */
+.btn-primary {
+  width: 100%;
+  padding: 0.9rem;
+  border: none;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(90, 63, 255, 0.25);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-google {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-weight: 500;
+  color: var(--color-text);
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+.btn-google:hover {
+  background: #f7f7f7;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-secondary);
+  margin: 1.75rem 0;
+  font-size: 0.8rem;
+}
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--color-border);
+}
+.divider span {
+  margin: 0 1rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.link-button {
+  margin-top: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.link-button:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+/* --- Enlace "Olvidaste contraseña" --- */
+.forgot-password-link {
+  text-align: right;
+  margin-bottom: 1.25rem;
+  margin-top: -0.75rem;
+}
+.forgot-password-link button {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+}
+.forgot-password-link button:hover {
+  text-decoration: underline;
+}
+
+/* --- Mensajes de Feedback --- */
+.error-text {
+  color: var(--color-error);
+  font-size: 0.9rem;
+  margin: 0 0 1rem 0;
+  text-align: left;
+}
+
+.success-text {
+  color: var(--color-success);
+  font-size: 0.9rem;
+  margin: 0.5rem 0 1rem;
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 0.75rem;
+  text-align: center;
+}
+
+/* --- Responsive --- */
+@media (max-width: 850px) {
+  .auth-container {
+    grid-template-columns: 1fr;
+  }
+  .auth-image {
+    display: none;
+  }
+  .auth-card {
+    padding: 1rem;
+  }
+  .auth-content {
+    padding: 2rem 1.5rem;
+    box-shadow: none;
+  }
+}

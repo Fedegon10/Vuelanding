@@ -1,0 +1,218 @@
+/* ==========================================
+   RESERVAS DETALLE — ESTILO BRUBANK UNIFICADO
+   ========================================== */
+
+.reserves-detail-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 2rem 5rem;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* --- HEADER --- */
+.reserves-detail-page .page-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #7b61ff, #b794ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="dark"] .page-header h1 {
+  background: linear-gradient(90deg, #b6a4ff, #8b6bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+}
+
+/* --- BOTÓN VOLVER --- */
+.reserves-detail-page .back-link {
+  display: inline-block;
+  margin-bottom: 2rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 0.8rem 1.75rem;
+  border-radius: 12px;
+  color: var(--color-text-primary);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.25s ease;
+  box-shadow: var(--box-shadow-sm);
+}
+.reserves-detail-page .back-link:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+/* --- CONTROLES --- */
+.controls-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  margin-bottom: 3rem;
+  width: 100%;
+  max-width: 1200px;
+}
+.toggle-switch {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+.toggle-switch button {
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  border-radius: 24px;
+  min-width: 140px;
+  transition: all 0.2s ease;
+}
+.controls-bar .btn-primary {
+  width: 100%;
+  max-width: 420px;
+  padding: 1rem 1.5rem;
+  font-size: 1.05rem;
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: var(--box-shadow);
+}
+
+/* --- LISTA DE TARJETAS --- */
+.reservation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* --- CARD BASE --- */
+.reservation-card,
+.transport-card,
+.ticket-card,
+.accommodation-card {
+  background: var(--color-surface);
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--box-shadow);
+  transition: all 0.3s ease;
+}
+.reservation-card:hover,
+.transport-card:hover,
+.ticket-card:hover,
+.accommodation-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow-lg);
+  border-color: var(--color-primary-light);
+}
+
+/* --- MODO OSCURO GLASS --- */
+[data-theme="dark"] .reservation-card,
+[data-theme="dark"] .transport-card,
+[data-theme="dark"] .ticket-card,
+[data-theme="dark"] .accommodation-card {
+  background: rgba(30, 34, 56, 0.85);
+  border: 1px solid rgba(110, 68, 255, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4),
+              0 0 12px rgba(138, 127, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* =========================================================
+   TARJETAS ESPECÍFICAS
+   ========================================================= */
+
+/* --- TRANSPORTE --- */
+.ticket-left {
+  background: linear-gradient(135deg, rgba(123, 97, 255, 0.05), rgba(79, 70, 229, 0.05));
+}
+[data-theme="dark"] .ticket-left {
+  background: linear-gradient(135deg, rgba(123, 97, 255, 0.12), rgba(79, 70, 229, 0.08));
+}
+.ticket-right {
+  background: transparent;
+}
+.btn-icon {
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  transition: all 0.25s ease;
+}
+.btn-icon:hover {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  transform: scale(1.1);
+  border-color: var(--color-primary-light);
+}
+
+/* --- TICKET (Entradas) --- */
+.ticket-card {
+  background: linear-gradient(135deg, #faf9ff, #eef2ff);
+}
+[data-theme="dark"] .ticket-card {
+  background: linear-gradient(135deg, rgba(35, 38, 58, 0.9), rgba(30, 32, 52, 0.9));
+  border: 1px solid rgba(123, 97, 255, 0.1);
+}
+.ticket-icon {
+  background: linear-gradient(135deg, #7b61ff, #8b6bff);
+}
+
+/* --- ALOJAMIENTO --- */
+.accommodation-card {
+  background: linear-gradient(135deg, #f8f6ff, #eef2ff);
+}
+[data-theme="dark"] .accommodation-card {
+  background: linear-gradient(135deg, rgba(35, 38, 58, 0.9), rgba(27, 30, 48, 0.9));
+  border: 1px solid rgba(138, 127, 255, 0.12);
+}
+.hotel-icon {
+  background: linear-gradient(135deg, rgba(123, 97, 255, 0.15), rgba(79, 70, 229, 0.1));
+  color: var(--color-primary);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+  .page-header p {
+    font-size: 1rem;
+  }
+  .controls-bar {
+    gap: 1.5rem;
+  }
+  .controls-bar .btn-primary {
+    max-width: 100%;
+  }
+}
+
+/* =========================================================
+   iOS SAFE AREA FIX
+   ========================================================= */
+@supports (-webkit-touch-callout: none) {
+  .reserves-detail-page {
+    padding-bottom: calc(90px + env(safe-area-inset-bottom)) !important;
+  }
+  .reservation-list {
+    padding-bottom: calc(60px + env(safe-area-inset-bottom)) !important;
+  }
+}

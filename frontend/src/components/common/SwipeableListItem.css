@@ -1,0 +1,74 @@
+.swipeable-list-item-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  width: 100%;
+  user-select: none;
+  background: transparent;
+}
+
+.swipeable-actions {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.swipe-action {
+  flex: 0 0 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 500;
+  font-size: 0.8rem;
+  gap: 4px;
+}
+
+.swipe-action.edit {
+  background-color: var(--color-primary-light, #7d5cff);
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+
+.swipe-action.delete {
+  background-color: var(--color-accent, #ff4d4f);
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.swipeable-content {
+  position: relative;
+  z-index: 1;
+  background-color: var(--color-surface, #fff);
+  width: 100%;
+  cursor: grab;
+  touch-action: pan-y;
+  will-change: transform;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.swipeable-content:active {
+  cursor: grabbing;
+}
+
+.swipeable-content:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.swipeable-list-item-wrapper:has(.swipeable-content[style*="translateX"]) .swipeable-actions {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .swipe-action {
+    flex-basis: 80px;
+    font-size: 0.75rem;
+  }
+}

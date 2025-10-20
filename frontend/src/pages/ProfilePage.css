@@ -1,0 +1,37 @@
+/* src/pages/ProfilePage.css */
+
+.profile-page .profile-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.profile-info {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 2rem;
+}
+
+.profile-info p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.collaboration-management {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 2rem;
+}
+
+.collaboration-management h3 {
+  margin-bottom: 0.5rem;
+}
+
+.collaboration-management p {
+  color: var(--color-text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.logout-button {
+  width: 100%;
+}

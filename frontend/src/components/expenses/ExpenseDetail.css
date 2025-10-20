@@ -1,0 +1,189 @@
+/* ============================================================
+   DETALLE DE GASTOS — ADAPTADO A DARK / LIGHT MODE
+   ============================================================ */
+
+.expense-detail-page {
+  padding: 1rem 1rem 6rem 1rem;
+  background-color: var(--color-background);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- Encabezados y textos --- */
+.expense-detail-page .back-link-wrapper { margin-bottom: 1.5rem; }
+.expense-detail-page .page-header { text-align: left; margin-bottom: 1.5rem; }
+.expense-detail-page h1, 
+.expense-detail-page h2 {
+  font-family: var(--font-family-heading);
+  color: var(--color-text-primary);
+  margin-top: 0;
+}
+.expense-detail-page h2 { font-size: 1.25rem; margin-bottom: 1rem; }
+.expense-detail-page p { color: var(--color-text-secondary); margin-top: 0.25rem; }
+
+/* ============================================================
+   BOTÓN "AÑADIR GASTO"
+   ============================================================ */
+.action-section { margin: 2rem 0; }
+.add-expense-button {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+.add-expense-button:hover {
+  background-color: var(--color-primary-light);
+}
+
+/* ============================================================
+   LISTA DE GASTOS
+   ============================================================ */
+.expense-list-section { margin-bottom: 2rem; }
+.expense-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* --- ITEM INDIVIDUAL --- */
+.expense-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--color-surface);
+  padding: 1.25rem 1rem;
+  border-radius: 16px;
+  box-shadow: var(--box-shadow-sm);
+  border: 1px solid var(--color-border);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.expense-item:hover {
+  border-color: var(--color-primary-light);
+}
+
+/* --- Icono de categoría --- */
+.expense-category-icon {
+  font-size: 2rem;
+  color: var(--color-primary);
+}
+
+/* --- Contenido central --- */
+.expense-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  text-align: center;
+}
+.expense-description {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+}
+.expense-category {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+/* --- Píldora del monto --- */
+.expense-amount {
+  margin-top: 0.5rem;
+  background-color: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* --- Acciones --- */
+.expense-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* ============================================================
+   GRÁFICO, FILTROS Y PILLS
+   ============================================================ */
+.chart-section { margin-top: 2rem; }
+.chart-wrapper-card {
+  background-color: var(--color-surface);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: var(--box-shadow);
+  border: 1px solid var(--color-border);
+  height: 350px;
+  transition: background-color 0.25s ease;
+}
+
+.filter-section { margin: -1rem 0 2rem 0; }
+.filter-pills-container {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.25rem;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.filter-pills-container::-webkit-scrollbar { display: none; }
+
+.filter-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  white-space: nowrap;
+}
+.filter-btn:hover {
+  background-color: var(--color-surface-hover);
+}
+.filter-btn.active {
+  background-color: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+  box-shadow: 0 2px 8px rgba(109, 40, 217, 0.3);
+}
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+.btn-danger {
+  font-family: var(--font-family-body);
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  color: #fff;
+  background-color: #E53E3E;
+  border: 1px solid transparent;
+}
+.btn-danger:hover {
+  background-color: #C53030;
+  box-shadow: var(--box-shadow);
+}

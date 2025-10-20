@@ -1,0 +1,86 @@
+/* ==== FilesHub Page Animations and Layout ==== */
+
+.files-hub-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.files-choice-wrapper {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.files-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.files-choice-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: 16px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.files-choice-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-primary-light);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+}
+.files-choice-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.files-choice-card h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  color: var(--color-text-primary);
+}
+.files-choice-card p {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+}
+
+/* --- Vistas internas --- */
+.files-inner-wrapper {
+  position: relative;
+  min-height: 100%;
+  padding: 1rem;
+}
+
+.animated-section-content {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.back-link-wrapper.top-left {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 5;
+}
+
+.back-link-wrapper .btn-secondary {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+}
+.back-link-wrapper .btn-secondary:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background-color: rgba(109, 40, 217, 0.05);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}

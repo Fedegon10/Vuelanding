@@ -1,0 +1,257 @@
+/* === ESTILOS GLOBALES PARA FORMULARIOS === */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+  box-sizing: border-box; 
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+  font-family: var(--font-family-body);
+  font-size: 16px; /* evita zoom en iOS */
+  line-height: 1.4;
+  transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  min-height: 48px;
+}
+
+/* === Select con flecha custom === */
+select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.7rem center;
+  background-repeat: no-repeat;
+  background-size: 1.2em 1.2em;
+  padding-right: 2.5rem;
+}
+
+/* === Foco unificado === */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--focus-ring);
+}
+
+/* === Layout general de formularios === */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* === ESTADOS === */
+input[disabled],
+select[disabled],
+textarea[disabled] {
+  background-color: var(--color-background);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ==================================================================== */
+/* ===         NUEVO INTENTO: FIX AGRESIVO PARA iOS SAFARI          === */
+/* ==================================================================== */
+@supports (-webkit-touch-callout: none) {
+  /*
+    Este bloque tiene máxima especificidad y usa !important
+    para forzar a Safari a renderizar los campos de fecha correctamente.
+  */
+
+  /* Usamos un selector más específico para asegurarnos de ganar la batalla */
+  body .modal-content form input[type="date"],
+  body .modal-content form input[type="time"] {
+
+    /* 1. Forzamos a que vuelva al estilo NATIVO del navegador para este elemento.
+       'revert' es más fuerte que 'auto' o 'initial'. Esto debería devolver el control a iOS. */
+    -webkit-appearance: revert !important;
+    appearance: revert !important;
+
+    /* 2. Para asegurar que se vea, damos un color de fondo y borde explícitos.
+       Si ves este color gris claro, significa que la regla se está aplicando. */
+    background-color: #f8f9fa; /* Un color ligeramente gris para ver el cambio */
+    border: 1px solid #ced4da;
+
+    /* 3. Control de tamaño y texto. Mantenemos el font-size y quitamos altura fija. */
+    font-size: 16px !important;
+    height: auto !important;
+    padding: 12px 10px !important; /* Padding razonable */
+    line-height: 1.4 !important;
+  }
+}
+
+/* ========================================================= */
+/* === Ajustes visuales específicos por tipo de formulario === */
+/* ========================================================= */
+
+/* 1️⃣ Itinerarios: centrar y alinear las horas (inicio y fin) */
+.itinerary-form .form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.itinerary-form .form-row .form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.itinerary-form .form-row input[type="time"] {
+  text-align: center;
+  font-weight: 500;
+}
+
+/* 2️⃣ Destinos: fechas una debajo de la otra (mejor legibilidad en modal) */
+.destination-form .form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* 3️⃣ Pero en pantallas grandes (desktop), volvemos a colocarlas lado a lado */
+@media (min-width: 768px) {
+  .destination-form .form-row {
+    flex-direction: row;
+    gap: 1rem;
+  }
+}
+
+/* 4️⃣ Asegura consistencia entre plataformas (iOS incluido) */
+@supports (-webkit-touch-callout: none) {
+  .itinerary-form .form-row input[type="time"],
+  .destination-form input[type="date"] {
+    font-size: 16px !important;
+    line-height: normal !important;
+    -webkit-appearance: auto !important;
+    appearance: auto !important;
+  }
+}
+
+/* === Alineación perfecta de campos de hora (Itinerarios) === */
+.itinerary-form .form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end; /* fuerza ambos campos al mismo nivel base */
+  gap: 1rem;
+}
+
+.itinerary-form .form-row .form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.itinerary-form .form-row input[type="time"] {
+  text-align: center;
+  font-weight: 500;
+  min-height: 48px;
+  line-height: 1.4;
+  padding: 0.7rem 0.8rem;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* Safari iOS y Chrome: igualamos baseline del contenido */
+@supports (-webkit-touch-callout: none) {
+  .itinerary-form .form-row input[type="time"] {
+    -webkit-appearance: auto !important;
+    appearance: auto !important;
+    font-size: 16px !important;
+    line-height: normal !important;
+    text-align: center !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+}
+
+/* =========================================================
+   🌙 MODO OSCURO — ajuste visual Brubank
+   ========================================================= */
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] input[type="password"],
+[data-theme="dark"] input[type="number"],
+[data-theme="dark"] input[type="date"],
+[data-theme="dark"] input[type="time"],
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover sutil y transición suave */
+[data-theme="dark"] input:hover,
+[data-theme="dark"] select:hover,
+[data-theme="dark"] textarea:hover {
+  border-color: var(--color-primary-light);
+}
+
+/* Foco con efecto “glow fintech” */
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 6px rgba(138, 127, 255, 0.3);
+}
+
+/* Labels más suaves y lavanda */
+[data-theme="dark"] .form-group label {
+  color: var(--color-text-secondary);
+}
+
+/* Disabled con opacidad baja y sin contraste duro */
+[data-theme="dark"] input[disabled],
+[data-theme="dark"] select[disabled],
+[data-theme="dark"] textarea[disabled] {
+  background-color: #1a1e2c;
+  border-color: var(--color-border);
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* === Botones dentro de formularios (para coherencia visual) === */
+[data-theme="dark"] .form-actions .btn-primary {
+  background-color: var(--color-primary);
+  border: none;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(138, 127, 255, 0.25);
+}
+[data-theme="dark"] .form-actions .btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  box-shadow: 0 0 15px rgba(138, 127, 255, 0.3);
+}
+[data-theme="dark"] .form-actions .btn-secondary {
+  background-color: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+}
+

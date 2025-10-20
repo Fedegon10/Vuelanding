@@ -1,0 +1,293 @@
+/* ==========================================================================
+   ✨ DISEÑO DE TARJETAS DE DESTINO (ESTILO VISUAL)
+   ========================================================================== */
+
+.page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.view-toggle {
+  display: flex !important;
+  max-width: 300px;
+  margin: 0 auto 2rem;
+  background-color: var(--color-background);
+  border-radius: 999px;
+  padding: 4px;
+  border: 1px solid var(--color-border);
+}
+.view-toggle-btn {
+  width: 50%;
+  border: none;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 999px;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: all 0.3s ease;
+}
+.view-toggle-btn.active {
+  background-color: var(--color-primary);
+  color: #fff;
+  box-shadow: var(--box-shadow-sm);
+}
+
+.destination-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  animation: fade-in 0.4s ease;
+}
+
+.dest-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--box-shadow-sm);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.dest-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-md);
+}
+
+.dest-card__image-wrapper {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  position: relative;
+}
+.dest-card__image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+.dest-card:hover .dest-card__image {
+  transform: scale(1.05);
+}
+
+/* ✅ NUEVO CONTENEDOR PARA LOS BOTONES */
+.dest-card__top-actions {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 50;
+  display: flex;
+  gap: 0.5rem; /* Espacio entre los botones */
+}
+
+/* Botón de cambiar imagen */
+.dest-card__change-img-btn,
+.dest-card__actions > button {
+  background-color: rgba(0, 0, 0, 0.45);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: all 0.25s ease;
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.dest-card:hover .dest-card__change-img-btn,
+.dest-card:hover .dest-card__actions > button {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dest-card__change-img-btn:hover,
+.dest-card__actions > button:hover {
+  background: rgba(0, 0, 0, 0.6);
+  transform: scale(1.1);
+}
+
+/* --- MENÚ DE ACCIONES --- */
+.dest-card__actions {
+  position: relative; /* Cambiado de 'absolute' a 'relative' */
+}
+.dest-card__actions > button.active {
+  background-color: var(--color-primary);
+}
+
+.actions-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 160px;
+  border-radius: 14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--box-shadow-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 100;
+  animation: fade-in-scale 0.15s ease;
+  transform-origin: top right;
+  padding: 0.3rem;
+}
+.actions-menu button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: transparent;
+  border: none;
+  padding: 0.7rem 0.8rem;
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.actions-menu button:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-primary);
+}
+.actions-menu button.danger {
+  color: #e53e3e;
+}
+.actions-menu button.danger:hover {
+  background: rgba(229, 62, 62, 0.1);
+  color: #c53030;
+}
+
+/* --- CONTENIDO --- */
+.dest-card__content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 1px solid var(--color-border);
+}
+.dest-card__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.dest-card__header h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-text-primary);
+}
+.dest-card__header span {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+.dest-card__dates,
+.dest-card__stats {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+.dest-card__stats {
+  gap: 1.25rem;
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+/* --- OTROS ESTILOS --- */
+.no-destinations-message {
+  text-align: center;
+  color: var(--color-text-secondary);
+  padding: 3rem 1.5rem;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--border-radius);
+}
+.destination-list-compact,
+.compact-item,
+.compact-item__flag,
+.compact-item__details,
+.compact-item__city,
+.compact-item__dates,
+.compact-item__arrow {
+  /* Estilos de lista compacta */
+}
+@keyframes fade-in-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   ✅ MEDIA QUERY PARA MÓVILES
+   ========================================================================== */
+@media (max-width: 768px) {
+  .destination-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .dest-card__content {
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+  .dest-card__header h3 {
+    font-size: 1rem;
+  }
+  .dest-card__header span {
+    font-size: 0.75rem;
+  }
+  .dest-card__dates,
+  .dest-card__stats {
+    font-size: 0.7rem;
+    gap: 0.4rem;
+  }
+  .dest-card__stats {
+    gap: 0.8rem;
+  }
+
+  /* Hacemos visibles los botones y los hacemos más pequeños */
+  .dest-card:hover .dest-card__change-img-btn,
+  .dest-card:hover .dest-card__actions > button {
+    opacity: 0.8; /* Siempre visibles pero un poco transparentes */
+  }
+  .dest-card__top-actions {
+    opacity: 1;
+    transform: none;
+  }
+  .dest-card__change-img-btn,
+  .dest-card__actions > button {
+    opacity: 0.8;
+    transform: none;
+    width: 28px;
+    height: 28px;
+  }
+}

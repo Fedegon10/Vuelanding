@@ -1,0 +1,228 @@
+/* =========================================================
+   LÍNEA DE TIEMPO MODERNA (VERTICAL + HORIZONTAL)
+   ========================================================= */
+
+.timeline-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.timeline-header {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.timeline-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-header p {
+  color: var(--color-text-secondary);
+}
+
+/* =========================================================
+   VISTA VERTICAL (default)
+   ========================================================= */
+.timeline-modern {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  position: relative;
+}
+
+.timeline-date {
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: capitalize;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  position: relative;
+}
+.timeline-date::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6rem;
+  width: 6px;
+  height: 6px;
+  background: var(--color-primary);
+  border-radius: 50%;
+}
+
+.timeline-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* --- Tarjeta --- */
+.timeline-modern-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  box-shadow: var(--box-shadow-sm);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: all 0.25s ease;
+}
+
+.timeline-modern-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--box-shadow-md);
+  border-color: var(--color-primary-light);
+}
+
+.timeline-modern-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.timeline-modern-content {
+  flex-grow: 1;
+}
+.timeline-modern-content h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.timeline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  align-items: center;
+}
+
+.timeline-location {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.timeline-location img {
+  width: 20px;
+  height: 14px;
+  border-radius: 3px;
+}
+.timeline-location a {
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+.timeline-location a:hover {
+  color: var(--color-primary);
+}
+
+.timeline-category-badge {
+  margin-top: 0.75rem;
+  display: inline-block;
+  background-color: var(--color-background);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* =========================================================
+   MODO HORIZONTAL (solo desktop)
+   ========================================================= */
+@media (min-width: 1024px) {
+  .timeline-responsive {
+    flex-direction: row;
+    align-items: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 4rem;
+    padding: 2rem 1rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .timeline-group {
+    min-width: 280px;
+    flex-shrink: 0;
+    position: relative;
+    scroll-snap-align: start;
+  }
+
+  .timeline-date {
+    text-align: center;
+    padding-left: 0;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-items {
+    gap: 1rem;
+  }
+
+  .timeline-modern-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+    text-align: left;
+  }
+
+  .timeline-modern-icon {
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-connector-horizontal {
+    position: absolute;
+    top: 20px;
+    right: -2rem;
+    width: 4rem;
+    height: 2px;
+    background: var(--color-border-light);
+  }
+
+  .timeline-responsive::-webkit-scrollbar {
+    height: 8px;
+  }
+  .timeline-responsive::-webkit-scrollbar-thumb {
+    background-color: var(--color-border);
+    border-radius: 4px;
+  }
+}
+
+/* =========================================================
+   VACÍO Y RESPONSIVE MOBILE
+   ========================================================= */
+.timeline-empty {
+  text-align: center;
+  color: var(--color-text-secondary);
+  padding: 3rem 1rem;
+  border: 2px dashed var(--color-border-light);
+  border-radius: var(--border-radius);
+}
+
+@media (max-width: 768px) {
+  .timeline-modern-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .timeline-modern-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .timeline-date {
+    padding-left: 0.75rem;
+    font-size: 1rem;
+  }
+}

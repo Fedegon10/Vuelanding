@@ -1,0 +1,378 @@
+/* ==========================================
+   MAPA DE RECORRIDO — ESTILOS COMPLETOS
+   ========================================== */
+
+/* --- Layout general --- */
+.map-page {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 250px;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-background);
+  transition: left 0.3s ease-in-out;
+  z-index: 10;
+}
+
+.app-container.sidebar-collapsed .map-page {
+  left: 88px;
+}
+
+/* --- Encabezado --- */
+.map-header {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+.map-header h1 {
+  font-size: 1.6rem;
+  margin: 0;
+}
+.map-header p {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.25rem;
+}
+
+/* --- Layout principal --- */
+.map-layout.card {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  grid-template-rows: minmax(0, 1fr);
+  overflow: hidden;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* --- Sidebar de destinos --- */
+.destinations-sidebar {
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  padding: 1.25rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.destinations-sidebar h2 {
+  font-family: var(--font-family-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* --- Lista de destinos --- */
+.destinations-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-bottom: 80px;
+}
+
+/* --- Tarjetas de destinos --- */
+.destinations-list li button {
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: var(--box-shadow-sm);
+}
+.destinations-list li button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(110, 68, 255, 0.1);
+  border-color: var(--color-primary-light);
+}
+
+/* --- Destino activo --- */
+.destinations-list li button.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 8px 24px rgba(110, 68, 255, 0.3);
+  transform: translateY(-2px);
+}
+.destinations-list li button.active strong,
+.destinations-list li button.active span,
+.destinations-list li button.active .distance-info {
+  color: #fff !important;
+}
+.destinations-list li button.active .distance-info {
+  border-top-color: rgba(255, 255, 255, 0.25);
+  opacity: 0.9;
+}
+
+/* --- Contenido de cada tarjeta --- */
+.map-page .with-flag {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.map-page .country-flag {
+  width: 28px !important;
+  height: auto !important;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+.map-page .destination-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.map-page .destination-info strong {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+}
+.map-page .destination-info span {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+.distance-info {
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--color-border-light);
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* --- Contenedor del mapa --- */
+.map-container-wrapper {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+.map-container-wrapper .leaflet-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* --- Oculta elementos móviles en desktop --- */
+.close-list-button,
+.mobile-details-panel {
+  display: none !important;
+}
+
+/* =======================================================
+   VISTA MÓVIL Y SOLUCIÓN DEL NOTCH
+   ======================================================= */
+@media (max-width: 768px) {
+  .main-content > .map-page,
+  .page-container > .map-page {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .map-page {
+    position: fixed;
+    top: 0;
+    left: 0 !important;
+    right: 0;
+    bottom: 56px;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-background);
+    z-index: 10;
+  }
+
+  .map-header {
+    display: none !important;
+  }
+
+  .map-layout.card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .map-container-wrapper {
+    position: relative;
+    flex-grow: 1;
+    height: 100%;
+    min-height: 0;
+  }
+  .map-container-wrapper .leaflet-container {
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute !important;
+    inset: 0;
+  }
+
+  /* Panel inferior */
+  .mobile-details-panel {
+    display: flex !important;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    flex-shrink: 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .selected-destination-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .current-location {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .current-location strong {
+    font-size: 1.2rem;
+    color: var(--color-text-primary);
+    line-height: 1.2;
+  }
+  .current-location span {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+  }
+  .next-destination {
+    text-align: left;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border-light);
+  }
+  .next-destination p {
+    margin: 0;
+    line-height: 1.4;
+  }
+  .next-destination .next-label {
+    color: var(--color-text-secondary);
+  }
+  .next-destination strong {
+    color: var(--color-primary);
+    font-size: 1.05rem;
+  }
+  .next-destination .distance {
+    color: var(--color-text-secondary);
+  }
+  .toggle-list-button {
+    width: 100%;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  /* Sidebar móvil desplegable (La lista de itinerarios) */
+  .destinations-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-out;
+    background: var(--color-surface);
+    padding: 1.25rem;
+    border: none;
+  }
+  .destinations-sidebar.open {
+    transform: translateY(0);
+  }
+  .close-list-button {
+    display: block !important;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: var(--color-text-secondary);
+  }
+
+  /* ============================================
+     🧢 SOLUCIÓN PARA EL NOTCH DE iOS (PWA)
+     ============================================ */
+  @supports (padding-top: env(safe-area-inset-top)) {
+    /* * Aplica un padding superior al sidebar cuando está abierto
+     * para empujar el contenido hacia abajo, fuera del área del notch.
+     */
+    .destinations-sidebar.open {
+      padding-top: calc(env(safe-area-inset-top) + 1.25rem);
+    }
+
+    /* * Aplica un padding inferior al panel de detalles para que no
+     * quede oculto por la barra de inicio de iOS.
+     */
+    .mobile-details-panel {
+      padding-bottom: calc(env(safe-area-inset-bottom) + 0.75rem);
+    }
+
+    /* * Aplica el padding superior también al botón para cerrar la lista,
+     * así queda alineado con el nuevo padding del contenido.
+     */
+    .close-list-button {
+      top: calc(env(safe-area-inset-top) + 0.5rem);
+    }
+  }
+}
+
+/* ✅ AÑADE ESTO AL FINAL DEL ARCHIVO */
+/* --- Estilo para las flechas de la ruta --- */
+.leaflet-pane .leaflet-decorator path {
+  fill: var(--color-primary);
+}
+
+/* ✅ REGLA DE SEGURIDAD PARA EL TAMAÑO DEL MAPA */
+/* Asegura que el contenedor del mapa SIEMPRE tenga tamaño */
+.leaflet-wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 200px; /* Evita que colapse a altura cero durante la carga */
+  background-color: #f0f0f0; /* Un color de fondo para ver el área si los tiles fallan */
+}
+
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+.map-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface);
+}

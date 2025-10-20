@@ -1,0 +1,68 @@
+{
+  "name": "vuelanding",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fullcalendar/core": "^6.1.14",
+    "@fullcalendar/daygrid": "^6.1.14",
+    "@fullcalendar/interaction": "^6.1.14",
+    "@fullcalendar/list": "^6.1.19",
+    "@fullcalendar/react": "^6.1.14",
+    "@google-cloud/functions-framework": "^4.0.0",
+    "axios": "^1.12.2",
+    "chart.js": "^4.5.0",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.2.0",
+    "date-fns": "^3.6.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "firebase": "^12.3.0",
+    "framer-motion": "^12.23.22",
+    "googleapis": "^161.0.0",
+    "leaflet": "^1.9.4",
+    "leaflet-polylinedecorator": "^1.6.0",
+    "liquid-glass-react": "^1.1.1",
+    "lucide-react": "^0.544.0",
+    "react": "^18.3.1",
+    "react-chartjs-2": "^5.3.0",
+    "react-datepicker": "^8.7.0",
+    "react-dom": "^18.3.1",
+    "react-feather": "^2.0.10",
+    "react-glassmorphism": "^0.0.1",
+    "react-leaflet": "^4.2.1",
+    "react-leaflet-cluster": "^3.1.1",
+    "react-router-dom": "^6.23.1",
+    "react-scripts": "5.0.1",
+    "react-select": "^5.10.2",
+    "react-toastify": "^11.0.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.1",
+    "typescript": "^5.9.3"
+  }
+}

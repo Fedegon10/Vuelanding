@@ -1,0 +1,532 @@
+/* =========================================================
+   CONTENEDOR Y HEADER
+   ========================================================= */
+.menu-page-container {
+  width: 100%;
+  min-height: calc(100vh - 60px);
+  padding: 1rem 1rem 4rem;
+  background-color: var(--color-background);
+  box-sizing: border-box;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.page-header h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  text-align: center;
+  margin-bottom: 1rem;
+  animation: fade-down 0.4s ease;
+}
+
+/* =========================================================
+   SEARCH BAR
+   ========================================================= */
+.search-bar-wrapper {
+  width: 100%;
+  margin: 1rem 0 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.search-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 600px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(110, 68, 255, 0.05);
+  transition: box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.search-field:focus-within {
+  border-color: #9c8df0;
+  box-shadow: 0 0 0 4px rgba(156, 141, 240, 0.2);
+}
+
+.search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  color: #a7a3c2;
+}
+
+.menu-search-input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+  padding: 0.25rem 0;
+  min-width: 0;
+}
+
+.menu-search-input::placeholder {
+  color: #a7a3c2;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .menu-search-input {
+    font-size: 16px;
+  }
+}
+
+/* =========================================================
+   SECCIONES Y GRID
+   ========================================================= */
+.menu-section {
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fade-up 0.4s ease forwards;
+}
+
+.menu-section-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #9c8df0;
+  margin: 1.5rem 0 1rem 0.25rem;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 1rem;
+}
+
+.menu-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 1rem 0.5rem;
+  border-radius: 16px;
+  aspect-ratio: 1 / 1;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.menu-grid-item:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.menu-grid-item:active {
+  transform: scale(0.96);
+}
+
+.menu-grid-item__icon svg {
+  width: 28px;
+  height: 28px;
+  color: #6e44ff;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.menu-grid-item:hover .menu-grid-item__icon svg {
+  transform: scale(1.1);
+}
+
+.menu-grid-item__label {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-align: center;
+  color: #1c1c1e;
+}
+
+.no-results-message {
+  text-align: center;
+  color: #a7a3c2;
+  padding: 2rem;
+  animation: fade-in 0.3s ease;
+}
+
+/* =========================================================
+   HERRAMIENTAS DE CUENTA
+   ========================================================= */
+.account-tools-grid {
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+}
+
+.menu-page-container .mode-switcher {
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background-color: var(--color-surface);
+  margin: 0 0 2rem 0;
+  padding: 0.5rem;
+}
+
+.menu-page-container .mode-switcher .mode-option {
+  padding: 0.75rem 1rem;
+}
+
+.menu-page-container .mode-switcher .mode-details small {
+  max-width: none;
+}
+
+/* =========================================================
+   THEME TOGGLE Y LOGOUT
+   ========================================================= */
+.menu-theme-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.menu-logout-section {
+  padding: 2.5rem 0 1.5rem;
+  display: flex;
+  justify-content: center;
+  animation: fade-up 0.4s ease 0.3s forwards;
+  opacity: 0;
+}
+
+.menu-logout-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  max-width: 360px;
+  padding: 0.9rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #6e44ff, #9c8df0);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(110, 68, 255, 0.25);
+}
+
+.menu-logout-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(110, 68, 255, 0.35);
+}
+
+.menu-logout-button:active {
+  transform: scale(0.96);
+}
+
+/* =========================================================
+   MODO OSCURO
+   ========================================================= */
+[data-theme="dark"] .menu-page-container {
+  background-color: #0f11b;
+  color: #e8e8f5;
+}
+
+[data-theme="dark"] .page-header h1 {
+  color: #c8bfff;
+}
+
+[data-theme="dark"] .search-field {
+  background-color: #16182a;
+  border-color: #3b3570;
+}
+
+[data-theme="dark"] .search-field:focus-within {
+  border-color: #7b6fff;
+  box-shadow: 0 0 0 4px rgba(110, 68, 255, 0.25);
+}
+
+[data-theme="dark"] .menu-search-input,
+[data-theme="dark"] .menu-search-input::placeholder {
+  color: #8582a8;
+}
+
+[data-theme="dark"] .menu-search-input {
+  color: #f1f1ff;
+}
+
+[data-theme="dark"] .menu-section-title {
+  color: #a99df8;
+}
+
+[data-theme="dark"] .menu-grid-item,
+[data-theme="dark"] .menu-section:nth-of-type(2) .menu-grid-item,
+[data-theme="dark"] .menu-section:nth-of-type(3) .menu-grid-item {
+  background-color: rgba(139, 127, 255, 0.08);
+  border: 1px solid rgba(139, 127, 255, 0.2);
+}
+
+[data-theme="dark"] .menu-grid-item:hover {
+  background-color: rgba(139, 127, 255, 0.15);
+}
+
+[data-theme="dark"] .menu-grid-item__icon svg {
+  color: #b9a6ff;
+}
+
+[data-theme="dark"] .menu-grid-item__label {
+  color: #e4e2ff;
+}
+
+[data-theme="dark"] .menu-page-container .mode-switcher {
+  background-color: rgba(139, 127, 255, 0.08);
+  border: 1px solid rgba(139, 127, 255, 0.2);
+}
+
+[data-theme="dark"] .menu-logout-button {
+  background: linear-gradient(135deg, #9c8df0, #6e44ff);
+}
+
+[data-theme="dark"] .menu-logout-button:hover {
+  background: linear-gradient(135deg, #b4a4ff, #8d7aff);
+}
+
+/* =========================================================
+   ANIMACIONES
+   ========================================================= */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   FIX: ESPACIADO INFERIOR PARA iOS SAFE AREA
+   ========================================================= */
+.menu-page-container {
+  padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
+}
+
+.menu-logout-section {
+  padding-bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* =========================================================
+   ESTILOS Y FIX PARA ModeSwitcher
+   ========================================================= */
+.mode-switcher {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(110, 68, 255, 0.05);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.mode-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.mode-option:hover {
+  background-color: rgba(110, 68, 255, 0.04);
+}
+
+.mode-option:active {
+  transform: scale(0.98);
+}
+
+.mode-option-content {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.mode-option-content svg {
+  width: 22px;
+  height: 22px;
+  color: #6e44ff;
+  flex-shrink: 0;
+}
+
+/* ✅ SOLUCIÓN DEFINITIVA PARA COMPATIBILIDAD CON SAFARI */
+.mode-option-texts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  line-height: 1.2;
+  flex-grow: 1;
+  flex-basis: 0;
+  min-width: 0;
+}
+
+.mode-option-texts h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.mode-option-texts small {
+  margin-top: 2px;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+.mode-option .checkmark {
+  color: #6e44ff;
+  width: 18px;
+  height: 18px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.mode-option.active .checkmark {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* =========================================================
+   DARK MODE PARA ModeSwitcher
+   ========================================================= */
+[data-theme="dark"] .mode-switcher {
+  background-color: rgba(139, 127, 255, 0.08);
+  border-color: rgba(139, 127, 255, 0.25);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .mode-option:hover {
+  background-color: rgba(139, 127, 255, 0.12);
+}
+
+[data-theme="dark"] .mode-option-content svg {
+  color: #b9a6ff;
+}
+
+[data-theme="dark"] .mode-option-texts h4 {
+  color: #e4e2ff;
+}
+
+[data-theme="dark"] .mode-option-texts small {
+  color: #a7a3c2;
+}
+
+[data-theme="dark"] .mode-option .checkmark {
+  color: #b9a6ff;
+}
+
+/* =========================================================
+   BOTÓN DE RECARGA
+   ========================================================= */
+.menu-reload-section {
+  display: flex;
+  justify-content: center;
+  margin-top: -0.5rem;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fade-up 0.4s ease 0.3s forwards;
+}
+
+.menu-reload-button {
+  background: transparent;
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.75rem;
+  border: 1px solid rgba(110, 68, 255, 0.4);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.menu-reload-button:hover {
+  background: rgba(110, 68, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.menu-reload-button:active {
+  transform: scale(0.97);
+}
+
+[data-theme="dark"] .menu-reload-button {
+  color: #b9a6ff;
+  border-color: rgba(185, 166, 255, 0.4);
+}
+
+[data-theme="dark"] .menu-reload-button:hover {
+  background: rgba(185, 166, 255, 0.1);
+}
+
+/* =========================================================
+   FIX DEFINITIVO SAFARI iOS — ModeSwitcher
+   ========================================================= */
+@supports (-webkit-touch-callout: none) {
+  .mode-switcher {
+    display: block;
+  }
+
+  .mode-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    -webkit-justify-content: space-between;
+    min-height: 60px;
+    line-height: normal;
+  }
+
+  .mode-option-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    -webkit-box-align: center;
+  }
+
+  .mode-option-texts {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    line-height: 1.2;
+    -webkit-flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .mode-option .checkmark {
+    flex-shrink: 0;
+    align-self: center;
+  }
+}

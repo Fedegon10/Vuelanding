@@ -1,0 +1,165 @@
+/* ============================================================
+   IMAGE PICKER MODAL — CORREGIDO Y CENTRADO UNIVERSALMENTE
+   ============================================================ */
+
+/* --- Overlay global --- */
+.image-picker-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000 !important;
+  overflow: hidden;
+}
+
+/* --- Contenedor principal --- */
+.image-picker-modal {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+  width: 90%;
+  max-width: 900px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: popIn 0.35s ease;
+  transform: translateY(0);
+  position: relative;
+}
+
+/* --- Header --- */
+.image-picker-modal header {
+  text-align: center;
+  padding: 1.25rem 1rem 0.75rem;
+  border-bottom: 1px solid #eee;
+}
+
+.image-picker-modal h2 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #222;
+}
+
+/* --- Botón cerrar --- */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.05);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+.close-btn:hover {
+  background: rgba(0, 0, 0, 0.15);
+  transform: scale(1.1);
+}
+
+/* --- Grid de imágenes --- */
+.image-picker-grid {
+  flex: 1;
+  padding: 1rem 1.25rem;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+}
+
+.selectable-img {
+  width: 100%;
+  border-radius: 12px;
+  cursor: pointer;
+  border: 3px solid transparent;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.selectable-img:hover {
+  transform: scale(1.04);
+}
+.selectable-img.selected {
+  border-color: var(--color-primary, #6e44ff);
+  box-shadow: 0 6px 18px rgba(110, 68, 255, 0.3);
+}
+
+/* --- Footer --- */
+.image-picker-footer {
+  border-top: 1px solid #eee;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+.confirm-btn {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--color-primary, #6e44ff);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.confirm-btn:hover {
+  background-color: #5734d1;
+}
+
+/* --- Spinner --- */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+}
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: var(--color-primary, #6e44ff);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+}
+
+/* --- Animaciones --- */
+@keyframes popIn {
+  from {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Responsive móvil --- */
+@media (max-width: 768px) {
+  .image-picker-modal {
+    width: 94%;
+    height: 85vh;
+    border-radius: 18px;
+  }
+
+  .image-picker-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    padding: 0.8rem;
+  }
+}

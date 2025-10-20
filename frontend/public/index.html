@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+
+    <!-- ÍCONOS / PWA -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.png" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/icon512.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- Viewport con soporte notch -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <!-- ✅ Colores dinámicos según modo del sistema -->
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0d0d0d"
+      media="(prefers-color-scheme: dark)"
+    />
+
+    <!-- ✅ Configuración iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      id="apple-status-bar-style"
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Vuelanding" />
+
+    <!-- Descripción -->
+    <meta
+      name="description"
+      content="Organiza tus viajes con estilo Vuelanding ✈️"
+    />
+    <title>Vuelanding ✈️</title>
+  </head>
+
+  <body>
+    <noscript
+      >Necesitás habilitar JavaScript para usar esta aplicación.</noscript
+    >
+    <div id="root"></div>
+
+    <!-- 🔹 Portal para el Bottom Navigation (iOS FIX) -->
+    <div id="bottom-nav-root"></div>
+  </body>
+</html>

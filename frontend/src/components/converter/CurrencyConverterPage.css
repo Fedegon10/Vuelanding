@@ -1,0 +1,306 @@
+/* ============================================================
+   Conversor de Monedas — Modo Dinámico (Light / Dark)
+   ============================================================ */
+
+.converter-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 5rem 2rem;
+  background: var(--color-background);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-family: "Inter", "Poppins", sans-serif;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* ===========================
+   HEADER
+   =========================== */
+.converter-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 700px;
+}
+
+.converter-header h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(90deg, #6e44ff, #9f7bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.converter-header p {
+  font-size: 1.15rem;
+  color: var(--color-text-secondary);
+  opacity: 0.9;
+  text-align: center;
+}
+
+/* ===========================
+   CARD PRINCIPAL
+   =========================== */
+.converter-wrapper {
+  width: 100%;
+  max-width: 880px;
+  background: var(--color-surface);
+  backdrop-filter: blur(25px);
+  border: 1px solid var(--color-border);
+  border-radius: 1.75rem;
+  box-shadow: var(--box-shadow-lg);
+  padding: 3rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.converter-wrapper:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+/* ============================================================
+   FORMULARIO DE CONVERSIÓN
+   ============================================================ */
+.converter-card {
+  background: var(--color-surface);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow-md);
+  border: 1px solid var(--color-border);
+  max-width: 700px;
+  margin: 0 auto;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.converter-row {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr auto 1.5fr;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.converter-card .form-group {
+  margin-bottom: 0;
+}
+
+.amount-input,
+.converter-card select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  font-size: 1rem;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  transition: background-color 0.25s ease, color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.swap-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 0.2rem;
+}
+
+.swap-button {
+  background-color: var(--color-surface-hover);
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+.swap-button:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+  transform: rotate(180deg);
+}
+
+/* ============================================================
+   RESULTADO
+   ============================================================ */
+.result-section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+.result-label {
+  color: var(--color-text-secondary);
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+}
+
+/* Contenedor principal del resultado */
+.result-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Contenedor del número principal */
+.result-value {
+  display: flex;
+  align-items: baseline;
+  line-height: 1;
+}
+
+.result-integer-part {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  letter-spacing: -1px;
+  word-break: break-all;
+}
+
+.result-decimal-part {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  opacity: 0.7;
+  margin-left: 0.1rem;
+}
+
+.result-currency {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  align-self: flex-start;
+  margin-top: 0.25rem;
+}
+
+/* ============================================================
+   AUTOCOMPLETE (BUSCADOR DE MONEDAS)
+   ============================================================ */
+.currency-selector {
+  position: relative;
+  width: 100%;
+}
+
+.currency-selector input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  font-size: 1rem;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: var(--box-shadow-sm);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.suggestions-list li {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-text-primary);
+  transition: background-color 0.2s ease;
+}
+
+.suggestions-list li:hover {
+  background-color: var(--color-surface-hover);
+}
+
+.suggestions-list .flag-icon {
+  width: 24px;
+  height: auto;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 600px) {
+  .converter-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+
+  .swap-button-container {
+    order: 1;
+    padding: 0;
+  }
+
+  .converter-row .form-group:nth-child(1) {
+    order: 0;
+  }
+  .converter-row .form-group:nth-child(2) {
+    order: 1;
+  }
+  .converter-row .form-group:nth-child(4) {
+    order: 2;
+  }
+
+  .swap-button {
+    transform: rotate(90deg);
+  }
+  .swap-button:hover {
+    transform: rotate(270deg);
+  }
+
+  .result-display {
+    gap: 0.5rem;
+  }
+
+  .result-integer-part {
+    font-size: 2.25rem;
+  }
+  .result-decimal-part {
+    font-size: 1.2rem;
+  }
+  .result-currency {
+    font-size: 1.3rem;
+  }
+}
+
+/* ============================================================
+   ANIMACIÓN GLOBAL
+   ============================================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

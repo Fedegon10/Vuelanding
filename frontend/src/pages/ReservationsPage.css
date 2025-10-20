@@ -1,0 +1,392 @@
+/* ==========================================================================
+   ✨ NUEVO DISEÑO DE TARJETAS DE RESERVA ("POLAROID" STYLE)
+   ========================================================================== */
+
+.destination-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.reservation-card {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-border);
+  text-decoration: none;
+  color: var(--color-text-primary);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--box-shadow-sm);
+}
+
+.reservation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-md);
+}
+
+.reservation-card__image-container {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  position: relative;
+}
+
+.reservation-card__image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+.reservation-card:hover .reservation-card__image {
+  transform: scale(1.05);
+}
+
+.reservation-card__change-image-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: all 0.25s ease;
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.reservation-card:hover .reservation-card__change-image-btn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reservation-card__change-image-btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+  transform: scale(1.1);
+}
+
+.reservation-card__content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.reservation-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.reservation-card__flag {
+  width: 32px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.reservation-card__location h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+.reservation-card__location span {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.reservation-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.75rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.reservation-card__dates {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.reservation-card__arrow {
+  color: var(--color-text-secondary);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.reservation-card:hover .reservation-card__arrow {
+  transform: translateX(4px);
+  color: var(--color-primary);
+}
+
+.skeleton-reservation-card {
+  border-radius: var(--border-radius);
+  background-color: var(--color-surface);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+}
+.skeleton-reservation-card::before {
+  content: "";
+  display: block;
+  aspect-ratio: 16 / 10;
+  background-color: var(--color-surface-hover);
+  animation: shimmer 1.5s infinite ease-in-out;
+}
+.skeleton-reservation-card::after {
+  content: "";
+  display: block;
+  height: 95px;
+  background-color: var(--color-surface);
+}
+
+@keyframes shimmer {
+  0% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.7;
+  }
+}
+
+.section-divider {
+  border: none;
+  height: 1px;
+  background-color: var(--color-border);
+  margin: 3rem 0;
+}
+
+.destination-list-compact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.compact-item-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--color-surface);
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--color-border);
+  text-decoration: none;
+  color: var(--color-text-primary);
+  transition: all 0.2s ease;
+}
+.compact-item-link:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--box-shadow-sm);
+  transform: translateX(4px);
+}
+
+.compact-item__flag img {
+  width: 32px;
+  border-radius: 4px;
+}
+.compact-item__details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.compact-item__city {
+  font-weight: 600;
+}
+.compact-item__country {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+.compact-item__arrow {
+  font-size: 1.4rem;
+  color: var(--color-text-secondary);
+}
+
+.view-toggle {
+  display: flex;
+  gap: 0.5rem;
+}
+.view-toggle-btn {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: all 0.2s ease;
+}
+.view-toggle-btn.active {
+  background-color: var(--color-primary);
+  color: white;
+  box-shadow: var(--box-shadow-sm);
+}
+
+.redesigned-calendar {
+  margin-top: 2.5rem;
+}
+.calendar-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+}
+
+.calendar-event {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow-sm);
+  padding: 1rem 1.25rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.calendar-event-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.calendar-flag {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+}
+.calendar-flag img {
+  width: 28px;
+  height: 20px;
+  border-radius: 4px;
+  object-fit: cover;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+.calendar-city {
+  font-size: 1rem;
+  color: var(--color-text-primary);
+}
+
+.calendar-date-range {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  background: var(--color-background);
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+}
+
+.calendar-event-bar {
+  margin: 1rem 0 0.75rem;
+  height: 8px;
+  background: var(--color-border-light);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.calendar-bar {
+  height: 100%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  animation: growWidth 0.8s ease-in-out;
+}
+
+@keyframes growWidth {
+  from {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  to {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+.calendar-event-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+.calendar-duration {
+  font-weight: 500;
+}
+
+.calendar-detail-link {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.calendar-detail-link:hover {
+  opacity: 0.8;
+}
+
+.calendar-connector {
+  position: absolute;
+  bottom: -1rem;
+  left: 50%;
+  width: 2px;
+  height: 1.5rem;
+  background: var(--color-border);
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  .calendar-event {
+    padding: 1rem;
+  }
+  .calendar-grid {
+    gap: 1.25rem;
+  }
+  .calendar-date-range {
+    font-size: 0.85rem;
+  }
+
+  .reservation-card__change-image-btn {
+    display: flex;
+    opacity: 0.8;
+    transform: none;
+    width: 28px;
+    height: 28px;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  .reservation-card:hover {
+    transform: none;
+    box-shadow: var(--box-shadow-sm);
+  }
+  .reservation-card:hover .reservation-card__image {
+    transform: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .reservations-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+}

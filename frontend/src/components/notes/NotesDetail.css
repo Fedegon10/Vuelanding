@@ -1,0 +1,125 @@
+/* ============================================================
+   📖 NOTE DETAIL PAGE — NOTAS POR DESTINO
+   ============================================================ */
+.note-detail-page {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  color: var(--color-text-primary);
+}
+.note-detail-page h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 0.25rem;
+}
+.note-detail-page p {
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* --- Grid de destinos --- */
+.notes-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+/* --- Tarjeta resumen --- */
+.note-summary-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--box-shadow-sm);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.note-summary-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-primary-light);
+  box-shadow: var(--box-shadow-md);
+}
+
+/* --- Header --- */
+.note-summary-card__header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem 1rem;
+  background: linear-gradient(90deg, rgba(110, 68, 255, 0.12), rgba(147, 51, 234, 0.08));
+  border-bottom: 1px solid var(--color-border-light);
+}
+.note-summary-card__icon {
+  color: var(--color-primary);
+  background: rgba(110, 68, 255, 0.12);
+  padding: 0.6rem;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* --- Preview --- */
+.note-summary-card__preview {
+  flex-grow: 1;
+  padding: 1rem 1.5rem;
+  background: var(--color-surface-hover);
+}
+.note-summary-card__preview p {
+  font-style: italic;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* --- Footer --- */
+.note-summary-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.5rem 1.2rem;
+  border-top: 1px solid var(--color-border-light);
+}
+.note-summary-card__stats {
+  display: flex;
+  gap: 1.2rem;
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+.note-summary-card__stats strong {
+  color: var(--color-text-primary);
+  font-weight: 700;
+}
+.arrow-icon {
+  font-size: 1.4rem;
+  color: var(--color-text-secondary);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+.note-summary-card:hover .arrow-icon {
+  transform: translateX(5px);
+  color: var(--color-primary);
+}
+
+/* --- Banderas --- */
+.with-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.with-flag img {
+  width: 18px;
+  height: auto;
+  border-radius: 3px;
+}
+
+/* --- Responsive --- */
+@media (max-width: 600px) {
+  .note-summary-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

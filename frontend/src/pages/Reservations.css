@@ -1,0 +1,239 @@
+/* ==========================================
+   RESERVAS DETALLE — LAYOUT MEJORADO
+   ========================================== */
+
+/* --- Layout general --- */
+.reserves-detail-page {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; <-- Eliminamos el centrado forzado desde aquí */
+  padding: 3rem 2rem 5rem;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* ✅ Centramos cada bloque principal individualmente */
+.reserves-detail-page .page-header,
+.reserves-detail-page .back-link,
+.controls-bar,
+.reservation-list {
+  width: 100%;
+  max-width: 1400px; /* ✅ Aumentamos el ancho máximo para aprovechar más pantalla */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reserves-detail-page .page-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+}
+
+/* --- Botón de volver --- */
+.reserves-detail-page .back-link {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 2rem;
+  align-self: flex-start; /* Lo alineamos al inicio en lugar de centrarlo */
+  text-align: center;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 0.8rem 1.75rem;
+  border-radius: 12px;
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.25s ease;
+  box-shadow: var(--box-shadow-sm);
+}
+
+.reserves-detail-page .back-link:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+/* --- Barra de controles --- */
+.controls-bar {
+  display: flex;
+  justify-content: space-between; /* ✅ Espaciamos los filtros y el botón */
+  align-items: center;
+  gap: 1.75rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap; /* Para que se vea bien en pantallas intermedias */
+}
+
+.toggle-switch {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.toggle-switch button {
+  font-size: 1.05rem;
+  font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  border-radius: 24px;
+  min-width: 140px;
+  transition: all 0.2s ease;
+}
+
+.controls-bar .btn-primary {
+  /* Ya no necesita ancho completo, se ajusta a su contenido */
+  padding: 1rem 1.5rem;
+  font-size: 1.05rem;
+  border-radius: 12px;
+  font-weight: 700;
+  box-shadow: var(--box-shadow);
+}
+
+/* --- Lista de reservas --- */
+.reservation-list {
+  /* ✅ CAMBIO A GRID RESPONSIVO */
+  display: grid;
+  /* Crea columnas automáticas. Cada una tendrá un mínimo de 450px y crecerá para ocupar el espacio */
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 2rem;
+}
+
+/* ==========================================
+   TARJETAS DE RESERVAS (Estilos internos sin cambios)
+   ========================================== */
+.reservation-card {
+  background-color: var(--color-surface);
+  border-radius: 22px;
+  box-shadow: var(--box-shadow);
+  border: 1px solid var(--color-border);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  transition: all 0.25s ease;
+}
+
+.reservation-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--box-shadow-lg);
+  border-color: var(--color-primary-light);
+}
+
+.reservation-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.reservation-content h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.reservation-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  align-items: center;
+  border-top: 1px solid var(--color-border-light);
+  padding-top: 1.25rem;
+}
+
+.reservation-category {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  background-color: rgba(110, 68, 255, 0.12);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  align-self: flex-start;
+}
+
+/* --- Acciones --- */
+.reservation-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  border-left: 1px solid var(--color-border-light);
+  background-color: var(--color-background);
+  border-top-right-radius: 22px;
+  border-bottom-right-radius: 22px;
+}
+
+.action-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  font-size: 1.2rem;
+}
+
+.action-btn:hover {
+  background-color: var(--color-surface-hover);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.action-btn.delete-btn:hover {
+  color: var(--color-accent);
+}
+
+/* ==========================================
+   Responsive
+   ========================================== */
+@media (max-width: 768px) {
+  .reserves-detail-page {
+    padding: 2rem 1rem 4rem;
+  }
+  .reserves-detail-page .back-link {
+    align-self: center; /* En móvil, el botón volver se centra */
+  }
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+  .page-header p {
+    font-size: 1rem;
+  }
+  .controls-bar {
+    flex-direction: column; /* Apila los filtros y el botón en móvil */
+    gap: 1.5rem;
+  }
+  .controls-bar .btn-primary {
+    width: 100%;
+  }
+  .reservation-card {
+    grid-template-columns: 1fr; /* Apila las acciones debajo del contenido */
+  }
+  .reservation-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    border-left: none;
+    border-top: 1px solid var(--color-border-light);
+    background-color: transparent;
+    border-radius: 0 0 22px 22px;
+    height: auto;
+  }
+  .reservation-content {
+    padding: 1.5rem;
+  }
+}

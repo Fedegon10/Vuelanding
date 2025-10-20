@@ -1,0 +1,247 @@
+/* src/components/converter/CurrencyConverter.css */
+
+.converter-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Aumentamos el espacio entre paneles */
+}
+
+/* ✅ Estilo base para los paneles de "De" y "A" con GRID */
+.converter-panel {
+  background-color: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  display: grid;
+  grid-template-columns: auto 1fr; /* Columna para el label, columna para el contenido */
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.converter-panel.result {
+  background-color: transparent;
+}
+
+.panel-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+/* Contenido principal de cada panel (selector + input/resultado) */
+.panel-main {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Espacio para el selector y para el monto */
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Input para el monto a convertir */
+.amount-input,
+.amount-display {
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -1px;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  text-align: right; /* Alineamos los números a la derecha */
+  width: 100%;
+}
+
+.amount-input {
+  color: var(--color-text-primary);
+}
+
+/* Display para el monto convertido */
+.amount-display {
+  color: var(--color-primary);
+  word-break: break-all;
+  min-height: 48px;
+}
+
+/* Sección central con el botón de swap y la tasa */
+.converter-middle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.swap-button {
+  flex-shrink: 0;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.swap-button:hover {
+  background-color: var(--color-primary);
+  color: #fff;
+  transform: rotate(180deg);
+}
+
+.rate-display {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-background);
+  border-radius: 99px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  text-align: center;
+  border: 1px solid var(--color-border);
+}
+
+/* --- ✅ NUEVOS ESTILOS PARA CURRENCY SELECTOR --- */
+.currency-selector {
+  position: relative;
+  width: 100%;
+}
+
+/* Contenedor del input y la bandera */
+.currency-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--color-surface);
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
+  border: 1px solid var(--color-border);
+}
+.currency-input-wrapper:focus-within {
+  border-color: var(--color-primary);
+}
+
+/* Estilo del input de búsqueda */
+.currency-input-wrapper input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+/* ✅ Estilo para la bandera, ahora un círculo perfecto */
+.selected-flag {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-border);
+  flex-shrink: 0;
+}
+.selected-flag img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que la imagen cubra el círculo sin deformarse */
+}
+
+/* Lista de sugerencias (sin cambios mayores) */
+.currency-selector .suggestions-list {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 320px;
+  max-width: 100%;
+  z-index: 10;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  box-shadow: var(--box-shadow-md);
+  max-height: 250px;
+  overflow-y: auto;
+}
+.suggestions-list li {
+  /* ... tus estilos de li ... */
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.suggestions-list li:hover {
+  background-color: var(--color-surface-hover);
+}
+.suggestions-list .flag-icon {
+  width: 24px;
+  height: auto;
+  border-radius: 3px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 600px) {
+  .panel-main {
+    grid-template-columns: 1fr; /* Apila el selector y el monto */
+    gap: 0.75rem;
+  }
+  .amount-input,
+  .amount-display {
+    text-align: left; /* Alinea a la izquierda en móvil */
+  }
+}
+
+/* --- CENTRADO VERTICAL Y LIMPIO --- */
+.converter-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Paneles uno debajo del otro, centrados */
+.converter-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Centrar contenido interno sin ponerlo en fila */
+.panel-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Ajustes de los inputs y resultados */
+.amount-input,
+.amount-display {
+  text-align: center;
+  width: 100%;
+}
+
+/* Sección del medio (botón + tasa) también centrada */
+.converter-middle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Texto de tasa centrado visualmente */
+.rate-display {
+  margin: 0 auto;
+  text-align: center;
+}

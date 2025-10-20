@@ -1,0 +1,65 @@
+{
+  // ======================================================
+  //  🌐 CONFIGURACIÓN TYPESCRIPT PARA REACT + FIREBASE
+  //  Compatible con CRA o Vite
+  // ======================================================
+  "compilerOptions": {
+    /* =========================
+       📂 Estructura de archivos
+    ========================= */
+    "rootDir": "./src",
+    "outDir": "./dist",
+
+    /* =========================
+       ⚙️ Entorno / Target
+    ========================= */
+    "module": "ESNext",
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "moduleResolution": "Node",
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+
+    /* =========================
+       ⚡ React y JSX
+    ========================= */
+    "jsx": "react-jsx",              // Usa la nueva transformación JSX de React 17+
+    "isolatedModules": true,         // Requerido para Vite y herramientas modernas
+    "allowJs": true,                 // Permite mezclar JS y TS (útil si aún tienes JSX viejos)
+    "checkJs": false,
+
+    /* =========================
+       🧠 Opciones de tipo
+    ========================= */
+    "strict": true,                  // Activa verificación estricta
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": false,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* =========================
+       🗺️ Salida y mapas
+    ========================= */
+    "sourceMap": true,
+    "declaration": false,
+    "declarationMap": false,
+
+    /* =========================
+       📦 Resolución de módulos
+    ========================= */
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": false,
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"]
+    }
+  },
+
+  /* =========================
+     📁 Archivos incluidos
+  ========================= */
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}

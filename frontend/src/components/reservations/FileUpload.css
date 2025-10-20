@@ -1,0 +1,26 @@
+.file-upload-container .dropzone {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.file-upload-container .dropzone:hover,
+.file-upload-container .dropzone.active {
+  background-color: var(--color-background);
+  border-color: var(--color-primary);
+}
+
+.file-upload-container .file-input-hidden {
+  display: none;
+}
+
+.file-upload-container .dropzone p {
+  margin: 0;
+  color: var(--color-text-secondary);
+}
+.file-upload-container .dropzone p strong {
+    color: var(--color-primary);
+}
